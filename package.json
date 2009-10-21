@@ -1,0 +1,10 @@
+{
+    "name": "mongodb",
+    "description": "API to access MongoDB, a schema-free database of JSON documents",
+    "keywords": ["mongo", "database", "document", "mongodb"],
+    "author": "Sergi Mansilla <sergi.mansilla@gmail.com>",
+    "jars": ["jars/mongo-0.11.jar"],
+    "email": "sergi.mansilla@gmail.com",
+    "dependencies": [ ],
+    "lib": "lib"
+}
