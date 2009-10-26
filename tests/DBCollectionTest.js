@@ -17,7 +17,7 @@ exports.testCreateCollection = function() {
 
     obj = c.findOne(123);
 
-    print(typeof(obj));
+    //for (var i in obj.toMap()) print(i);
     assert.isEqual(123, obj["_id"], "2");
     assert.isEqual(2, obj["x"], "3");
     assert.isEqual(2, obj["z"], "4");
@@ -34,6 +34,30 @@ exports.testCreateCollection = function() {
     obj = c.findOne({"x": 1}, {"y": 1});
     assert.isEqual(false, Util.has(obj, "x"), "10");
     assert.isEqual(2, obj["y"], "11");
+}
+
+exports.testDropIndex = function() {
+    var c = _db.getCollection( "dropindex1" );
+    c.drop();
+
+    c.save( {"x": 1 });
+    assert.isEqual( 1 , c.getIndexInfo().size() );
+
+    c.ensureIndex( {"x": 1} );
+    assert.isEqual( 2 , c.getIndexInfo().size() );
+
+    c.dropIndexes();
+    assert.isEqual( 1 , c.getIndexInfo().size() );
+
+    c.ensureIndex( {"x": 1} );
+    assert.isEqual( 2 , c.getIndexInfo().size() );
+
+    c.ensureIndex( {"y": 1} );
+    assert.isEqual( 3 , c.getIndexInfo().size() );
+
+    c.dropIndex( {"x": 1} );
+    assert.isEqual( 2 , c.getIndexInfo().size() );
+
 }
 
 if (require.main === module.id)
