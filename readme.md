@@ -44,4 +44,32 @@ Example usage
     myDoc = coll.findOne();
     print(myDoc);
 
+    // Now, lets add lots of little documents to the collection so we can explore queries and cursors
+    for (var i=0; i < 100; i++) {
+        coll.insert({"i": i});
+    }
 
+    print(coll.getCount());
+
+    // Let's get all the documents in the collection and print them out
+
+    var cur = coll.find();
+    while(cur.hasNext()) {
+        print(cur.next());
+    }
+
+    // Now use a query to get 1 document out
+
+    var query = { i: 71 };
+    cur = coll.find(query);
+
+    while(cur.hasNext())
+        print(cur.next());
+
+    // Now use a query to get a larger set
+
+    query = { "i": { "$gt": 50 } };  // i.e. find all where i > 50
+    cur = coll.find(query);
+
+    while(cur.hasNext())
+        print(cur.next());
