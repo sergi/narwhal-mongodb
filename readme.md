@@ -4,6 +4,10 @@ Javascript driver for Mongo database
 
 narwhal-mongodb is a CommonJS-compliant JavaScript driver for the Mongo database. It wraps the official Java driver and emulates its behavior, while adding some JavaScript sugar and convenience methods.
 
+### Source & Download:
+
+* [http://github.com/mrclash/narwhal-mongodb](http://github.com/mrclash/narwhal-mongodb)
+
 
 ### Mongo Homepage:
 
@@ -13,9 +17,6 @@ narwhal-mongodb is a CommonJS-compliant JavaScript driver for the Mongo database
 
 * [http://github.com/mongodb/mongo-java-driver/](http://github.com/mongodb/mongo-java-driver)
 
-### Source & Download:
-
-* [http://github.com/mrclash/narwhal-mongodb](http://github.com/mrclash/narwhal-mongodb)
 
 Example usage
 ------------------------
