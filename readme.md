@@ -1,8 +1,9 @@
-
-Javascript driver for Mongo database
+CommonJS driver for Mongo database
 ===========
 
-narwhal-mongodb is a CommonJS-compliant JavaScript driver for the Mongo database. It wraps the official Java driver and emulates its behavior, while adding some JavaScript sugar and convenience methods.
+narwhal-mongodb is a CommonJS JavaScript driver for the Mongo database. It wraps the official Java driver and emulates its behavior, while adding some JavaScript sugar and convenience methods.
+
+This Java wrapper will always be there and will be updated with every new release of the driver, but the plan is to slowly transition from wrapping the Java implementation to a full-fledged native and independent CommonJS implementation.
 
 ### Source & Download:
 
