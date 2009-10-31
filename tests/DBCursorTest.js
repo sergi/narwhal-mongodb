@@ -59,8 +59,8 @@ exports.testBig = function() {
     assert.isEqual( numToInsert , c.find().batchSize(2).itcount(), "11" );
     assert.isEqual( numToInsert , c.find().batchSize(1).itcount(), "12" );
 
-    assert.isEqual( numToInsert , _count( c.find( null , null , 0 , 5 ) ) );
-    assert.isEqual( 5 , _count( c.find( null , null , 0 , -5 ) ) );
+    assert.isEqual( numToInsert , _count( c.find( null , null , 0 , 5 ) ), "13" );
+    assert.isEqual( 5 , _count( c.find( null , null , 0 , -5 ) ), "14" );
 }
 
 var _count = function(i) {
