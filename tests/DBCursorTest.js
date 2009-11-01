@@ -2,7 +2,7 @@ var MongoDB = require("mongodb");
 var assert = require('test/assert.js');
 var Util = require('Util.js');
 
-var _db = new MongoDB.Mongo( "localhost" ).getDB( "cursortest" );
+var _db = new MongoDB.Mongo( "localhost" ).getDB("cursortest");
 
 exports.testCount = function() {
     var c = _db.getCollection("test");
@@ -55,9 +55,8 @@ exports.testBig = function() {
     assert.isEqual( 10 , b.getSizes()[0], "9" );
 
     assert.isTrue( a.numGetMores() < b.numGetMores(), "10" );
-
-    assert.isEqual( numToInsert , c.find().batchSize(2).itcount(), "11" );
-    assert.isEqual( numToInsert , c.find().batchSize(1).itcount(), "12" );
+    assert.isEqual( numToInsert , c.find().batchSize(2).toArray().slice().length, "11" );
+    assert.isEqual( numToInsert , c.find().batchSize(1).toArray().slice().length, "12" );
 
     assert.isEqual( numToInsert , _count( c.find( null , null , 0 , 5 ) ), "13" );
     assert.isEqual( 5 , _count( c.find( null , null , 0 , -5 ) ), "14" );
@@ -65,7 +64,7 @@ exports.testBig = function() {
 
 var _count = function(i) {
     var c = 0;
-    while ( i.hasNext() ){
+    while (i.hasNext()){
         i.next();
         c++;
     }
@@ -77,26 +76,26 @@ exports.testExplain = function() {
     c.drop();
 
     for ( var i=0; i<100; i++ )
-        c.save( {"x": i } );
+        c.save({"x": i });
 
     var q = {"x" : {"$gt": 50 }};
 
-    assert.isEqual( 49 , c.find( q ).count(), "1" );
-    assert.isEqual( 49 , c.find( q ).toArray().length, "2" );
-    assert.isEqual( 49 , c.find( q ).itcount(), "3" );
-    assert.isEqual( 20 , c.find( q ).limit(20).itcount(), "4" );
+    assert.isEqual( 49, c.find(q).count(), "1" );
+    assert.isEqual( 49, c.find(q).toArray().length, "2" );
+    assert.isEqual( 49, c.find(q).itcount(), "3" );
+    assert.isEqual( 20, c.find(q).limit(20).itcount(), "4" );
 
     c.ensureIndex({"x": 1 });
 
-    assert.isEqual( 49 , c.find( q ).count(), "5" );
-    assert.isEqual( 49 , c.find( q ).toArray().length, "6" );
-    assert.isEqual( 49 , c.find( q ).itcount(), "7" );
-    assert.isEqual( 20 , c.find( q ).limit(20).itcount(), "8" );
-    assert.isEqual( 49 , c.find( q ).explain().get("n"), "9" ); // Not a JS object
+    assert.isEqual( 49, c.find(q).count(), "5" );
+    assert.isEqual( 49, c.find(q).toArray().length, "6" );
+    assert.isEqual( 49, c.find(q).itcount(), "7" );
+    assert.isEqual( 20, c.find(q).limit(20).itcount(), "8" );
+    assert.isEqual( 49, c.find(q).explain().get("n"), "9" ); // Not a JS object
 
-    // these 2 are 'reversed' b/c we want the user case to make sense
-    assert.isEqual( 20 , c.find( q ).limit(20).explain().get("n"), "10" );
-    assert.isEqual( 49 , c.find( q ).limit(-20).explain().get("n"), "11 " );
+    // these 2 are 'reersed' b/ e want the user case to make sense
+    assert.isEqual( 20, c.find(q).limit(20).explain().get("n"), "10" );
+    assert.isEqual( 49, c.find(q).limit(-20).explain().get("n"), "11 " );
 }
 
 if (require.main === module.id)
