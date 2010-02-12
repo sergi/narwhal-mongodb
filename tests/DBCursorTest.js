@@ -98,5 +98,5 @@ exports.testExplain = function() {
     assert.isEqual( 49, c.find(q).limit(-20).explain().get("n"), "11 " );
 }
 
-if (require.main === module.id)
+if (require.main == module.id)
     require("os").exit(require("test/runner").run(exports));
