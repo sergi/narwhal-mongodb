@@ -1,6 +1,6 @@
 var MongoDB = require("mongodb");
 var assert = require('test/assert.js');
-var Util = require('Util.js');
+var Util = require('util.js');
 
 var _db = new MongoDB.Mongo( "localhost" ).getDB( "dbbasetest" );
 
