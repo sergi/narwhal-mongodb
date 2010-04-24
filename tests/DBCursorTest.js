@@ -15,8 +15,9 @@ exports.testCount = function() {
 exports.testSnapshot = function() {
     var c = _db.getCollection("snapshot1");
     c.drop();
-    for ( var i=0; i<100; i++ )
+    for ( var i=0; i<100; i++ ) {
         c.save({ "x": i });
+    }
     assert.isEqual( 100 , c.find().count() );
     assert.isEqual( 100 , c.find().toArray().length );
     assert.isEqual( 100 , c.find().snapshot().count() );
@@ -57,7 +58,6 @@ exports.testBig = function() {
     assert.isTrue( a.numGetMores() < b.numGetMores(), "10" );
     assert.isEqual( numToInsert , c.find().batchSize(2).toArray().slice().length, "11" );
     assert.isEqual( numToInsert , c.find().batchSize(1).toArray().slice().length, "12" );
-
     assert.isEqual( numToInsert , _count( c.find( null , null , 0 , 5 ) ), "13" );
     assert.isEqual( 5 , _count( c.find( null , null , 0 , -5 ) ), "14" );
 }
