@@ -62,6 +62,17 @@ exports.testSave = function() {
     assert.isTrue(docId == id, "17");
     assert.isTrue(Packages.com.mongodb.ObjectId.isValid(id));
 }
+exports.testRemove = function() {
+    var c = _db.getCollection( "test" );
+    c.drop();
+
+    c.insert({"_id": 123, "x": 100});
+    var obj = (c.findOne());
+    assert.isTrue(obj != null, "18");
+    c.remove({"x": 100});
+    obj = c.findOne();
+    assert.isTrue(obj == null, "19");
+}
 
 if (require.main == module.id)
     require("os").exit(require("test/runner").run(exports));
